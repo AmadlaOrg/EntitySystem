@@ -1,0 +1,13 @@
+# Vim
+*.swp
+*.swo
+
+# OSX
+.DS_Store
+
+# IDE
+.idea
+
+# Visual Studio Code
+.vscode
+.factorypath
