@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "schema.json",
+  "title": "Amadla Memory Entity Configuration",
+  "description": "Defines the foundational Memory properties.",
+  "properties": {
+    "mem_limit": {"type": ["number", "string"]},
+    "mem_reservation": {"type": ["string", "integer"]},
+    "mem_swappiness": {"type": "integer"},
+    "memswap_limit": {"type": ["number", "string"]}
+  }
+}

@@ -1,0 +1,8 @@
+---
+_entity: "github.com/AmadlaOrg/Entity$v1"
+name: CPU
+description: CPU configuration definitions.
+category: System
+tags:
+  - system
+  - cpu

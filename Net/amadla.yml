@@ -1,0 +1,9 @@
+---
+_entity: "github.com/AmadlaOrg/Entity$v1"
+name: Net
+description: Net configuration definitions.
+category: System
+tags:
+  - system
+  - network
+  - net

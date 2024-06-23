@@ -1,0 +1,8 @@
+---
+_entity: "github.com/AmadlaOrg/Entity$v1"
+name: Memory
+description: Memory configuration definitions.
+category: System
+tags:
+  - system
+  - memory

@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "schema.json",
+  "title": "Amadla Net Entity Configuration",
+  "description": "Defines the foundational Net properties.",
+  "properties": {
+    "networks": {
+      "oneOf": [
+        {
+          "$ref": "https://raw.githubusercontent.com/AmadlaOrg/common-json-schemas/master/datatypes.definitions.schema.json#/definitions/list_of_strings"
+        },
+        {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9._-]+$": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "aliases": {
+                      "$ref": "https://raw.githubusercontent.com/AmadlaOrg/common-json-schemas/master/datatypes.definitions.schema.json#/definitions/list_of_strings"
+                    },
+                    "ipv4_address": {"type": "string"},
+                    "ipv6_address": {"type": "string"},
+                    "link_local_ips": {
+                      "$ref": "https://raw.githubusercontent.com/AmadlaOrg/common-json-schemas/master/datatypes.definitions.schema.json#/definitions/list_of_strings"
+                    },
+                    "mac_address": {"type": "string"},
+                    "driver_opts": {
+                      "type": "object",
+                      "patternProperties": {
+                        "^.+$": {"type": ["string", "number"]}
+                      }
+                    },
+                    "priority": {"type": "number"}
+                  },
+                  "additionalProperties": false,
+                  "patternProperties": {"^x-": {}}
+                },
+                {"type": "null"}
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "network": {
+      "id": "#/definitions/network",
+      "type": ["object", "null"],
+      "properties": {
+        "name": {"type": "string"},
+        "driver": {"type": "string"},
+        "driver_opts": {
+          "type": "object",
+          "patternProperties": {
+            "^.+$": {"type": ["string", "number"]}
+          }
+        },
+        "ipam": {
+          "type": "object",
+          "properties": {
+            "driver": {"type": "string"},
+            "config": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "subnet": {"type": "string", "format": "subnet_ip_address"},
+                  "ip_range": {"type": "string"},
+                  "gateway": {"type": "string"},
+                  "aux_addresses": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "patternProperties": {"^.+$": {"type": "string"}}
+                  }
+                },
+                "additionalProperties": false,
+                "patternProperties": {"^x-": {}}
+              }
+            },
+            "options": {
+              "type": "object",
+              "additionalProperties": false,
+              "patternProperties": {"^.+$": {"type": "string"}}
+            }
+          },
+          "additionalProperties": false,
+          "patternProperties": {"^x-": {}}
+        },
+        "external": {
+          "type": ["boolean", "object"],
+          "properties": {
+            "name": {
+              "deprecated": true,
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "patternProperties": {"^x-": {}}
+        },
+        "internal": {"type": "boolean"},
+        "enable_ipv6": {"type": "boolean"},
+        "attachable": {"type": "boolean"},
+        "labels": {
+          "$ref": "https://raw.githubusercontent.com/AmadlaOrg/common-json-schemas/master/datatypes.definitions.schema.json#/definitions/list_or_dict"
+        }
+      },
+      "additionalProperties": false,
+      "patternProperties": {"^x-": {}}
+    },
+    "dns": {
+      "$ref": "https://raw.githubusercontent.com/AmadlaOrg/common-json-schemas/master/datatypes.definitions.schema.json#/definitions/string_or_list"
+    },
+    "dns_opt": {"type": "array","items": {"type": "string"}, "uniqueItems": true},
+    "dns_search": {
+      "$ref": "https://raw.githubusercontent.com/AmadlaOrg/common-json-schemas/master/datatypes.definitions.schema.json#/definitions/string_or_list"
+    },
+    "domainname": {"type": "string"},
+    "expose": {
+      "type": "array",
+      "items": {
+        "type": ["string", "number"],
+        "format": "expose"
+      },
+      "uniqueItems": true
+    },
+    "extra_hosts": {
+      "$ref": "https://raw.githubusercontent.com/AmadlaOrg/common-json-schemas/master/datatypes.definitions.schema.json#/definitions/list_or_dict"
+    },
+    "hostname": {"type": "string"},
+    "mac_address": {"type": "string"},
+    "network_mode": {"type": "string"},
+    "ports": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {"type": "number", "format": "ports"},
+          {"type": "string", "format": "ports"},
+          {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "mode": {"type": "string"},
+              "host_ip": {"type": "string"},
+              "target": {"type": "integer"},
+              "published": {"type": ["string", "integer"]},
+              "protocol": {"type": "string"},
+              "app_protocol": {"type": "string"}
+            },
+            "additionalProperties": false,
+            "patternProperties": {"^x-": {}}
+          }
+        ]
+      },
+      "uniqueItems": true
+    }
+  }
+}

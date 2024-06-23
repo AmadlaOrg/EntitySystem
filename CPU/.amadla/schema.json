@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "id": "schema.json",
+  "title": "Amadla CPU Entity Configuration",
+  "description": "Defines the foundational CPU properties.",
+  "properties": {
+    "cpu_count": {"type": "integer", "minimum": 0},
+    "cpu_percent": {"type": "integer", "minimum": 0, "maximum": 100},
+    "cpu_shares": {"type": ["number", "string"]},
+    "cpu_quota": {"type": ["number", "string"]},
+    "cpu_period": {"type": ["number", "string"]},
+    "cpu_rt_period": {"type": ["number", "string"]},
+    "cpu_rt_runtime": {"type": ["number", "string"]},
+    "cpus": {"type": ["number", "string"]},
+    "cpuset": {"type": "string"}
+  }
+}
